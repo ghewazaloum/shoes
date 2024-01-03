@@ -1,0 +1,28 @@
+.DisplayShoes{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.DisplayShoes .shoe{
+    width: 150px;
+    height: 80px;
+    border: 0.1px solid var(--color-beige);
+    box-shadow: 0 0 10px var(--color-orange);
+    border-radius:6px ;
+}
+.DisplayShoes .shoe img{
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width:650px){
+    .DisplayShoes{
+        width: 100%;
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+}

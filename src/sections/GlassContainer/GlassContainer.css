@@ -1,0 +1,76 @@
+.GlassContainer{    
+    background-color: rgba(255,255,255,0.1);
+    width: 500px;
+    height: 400px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.SmallGlassContainer{
+    background-color: rgba(255,255,255,0.1);
+    width: 500px;
+    height: 195px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.TinyGlassContainer{
+    background-color: rgba(255,255,255,0.1);
+    width: 245px;
+    height: 195px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-beige);
+}
+@media screen and (min-width:850px) and (max-width:1044px){
+    .GlassContainer{    
+        width: 400px;
+    }
+    .SmallGlassContainer{
+        width: 400px;
+    }
+    .TinyGlassContainer{
+        width: 195px;
+    }
+    
+}
+@media screen and (min-width:650px) and (max-width:850px){
+.GlassContainer{    
+    flex-direction: column;
+    width: 300px;
+}
+.SmallGlassContainer{
+    width: 300px;
+}
+.TinyGlassContainer{
+    width: 145px;
+}
+
+}
+@media screen and (max-width:650px){
+    .GlassContainer{    
+        width: 80%;
+        flex-direction: column-reverse;
+    }
+    .SmallGlassContainer{
+        width: 100%;
+    }
+    .TinyGlassContainer{
+        width: calc(50%-5px);
+    }
+}
+@media screen and (max-width:435px){
+    .SmallGlassContainer{
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+}
+
+
