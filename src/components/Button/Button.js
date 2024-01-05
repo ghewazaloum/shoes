@@ -8,6 +8,15 @@ function Button (props){
         </button>
     );
 }
+function UnFocusedButton (props){
+    return(
+        <button className="UnFocusedButton">
+            <a>
+                {props.children}
+            </a>
+        </button>
+    );
+}
 function WideButton (props){
     return(
         <button className="WideButton">
@@ -19,3 +28,4 @@ function WideButton (props){
 }
 export default Button
 export {WideButton}
+export {UnFocusedButton}

@@ -24,6 +24,10 @@
 .information p{
     color: var(--color-beige) ;
 }
+.information span{
+    font-variant: small-caps;
+     color: var(--color-lightBlue);
+}
 @media screen and (max-width:650px){
     .information{
         width: 80%;
