@@ -7,10 +7,36 @@
     height:auto;
     gap: 10px;
 }
+.ShoesContainer{
+    margin: 15% 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height:auto;
+    gap: 10px;
+    position: relative;
+}
+.ShoesContainer svg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.ShoesContainer svg path{
+    stroke: var(--color-lightBlue);
+    stroke-width: 5px;
+    filter: drop-shadow(0 0 10px var(--color-lightBlue));
+}
 @media screen and (max-width:650px){
     .container{
         flex-direction: column;
         gap: 40px;
     }
+    .ShoesContainer{
+        flex-direction: column;
+        gap: 40px;
+    }
+    
     
 }

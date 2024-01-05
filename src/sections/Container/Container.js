@@ -7,4 +7,12 @@ function Container(props){
         </div>
     );
 }
+function ShoesContainer(props){
+    return(
+        <div className='ShoesContainer'>
+            {props.children}
+        </div>
+    );
+}
 export default Container
+export {ShoesContainer}
