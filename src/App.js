@@ -19,8 +19,9 @@ function App() {
               <Colors/>
             </Information>
             <ShoeContainer/>
-            <DisplayShoes/>
+            {/* <DisplayShoes/> */}
           </Container>
+
         <Headers>our collection</Headers>
         <Container>
           <GlassContainer>
@@ -57,6 +58,7 @@ function App() {
           </div>
 
         </Container>
+
         <Headers>for men</Headers>
         <CardContainer>
           <Card>
@@ -117,6 +119,7 @@ function App() {
             </div>
           </Card>
         </CardContainer>
+
         <ShoesContainer>
             <svg width="1804" height="825" viewBox="0 0 1804 825" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M235 667C28.6668 783 -226.6 945.4 403 667C1190 319 2203 -287.5 1633 168C1063 623.5 890 776.5 1031.5 767" stroke="black" stroke-width="8"/>
@@ -130,7 +133,7 @@ function App() {
                    <UnFocusedButton>learn more</UnFocusedButton>
               </ButtonContainer>
             </Information>
-            <img  src={shoe}/>
+            <img src={shoe}/>
           </ShoesContainer>
           <Headers>for women</Headers>
         <CardContainer>
