@@ -30,9 +30,9 @@
     }
     
 }
-/* .ShoesContainer:has(img:hover){
+.ShoesContainer:has(img:hover){
     background-image: linear-gradient(to top right,var(--color-dark) 10%,transparent)
-} */
+}
 .ShoesContainer img{
     width: 30%;
 }

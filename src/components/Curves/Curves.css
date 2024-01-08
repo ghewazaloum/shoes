@@ -1,3 +1,6 @@
 .curve path{
     fill: var(--color-beige);
 }
+.curve{
+    display: block;
+}

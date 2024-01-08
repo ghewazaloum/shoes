@@ -5,16 +5,16 @@
     justify-content: space-between;
     align-items: center;
 }
-.nav .logo{
-    padding: 10px;
+ .logo{
+    padding:0px 10px;
     font-size: 34px;
     font-weight: 700;
     text-transform: capitalize;
 }
-.nav .logo .span1{
+.span1{
     color:var( --color-semiDark);
 }
-.nav .logo .span2{
+.span2{
     color:var( --color-orange);
 }
 
