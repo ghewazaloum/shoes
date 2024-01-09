@@ -9,9 +9,9 @@ body{
   background-color: var(--color-dark);
 }
 :root{
-  --color-dark:#12153b;
-  --color-semiDark:#1746A2;
-  --color-lightBlue:#5F9DF7;
-  --color-orange:#FF731D;
-  --color-beige:#f5f5b4;
+  --color-dark:#2c6e49; 
+  --color-semiDark:#6eb257 ;
+  --color-lightBlue:#ff6700;
+  --color-orange:#ff6700;
+  --color-beige:#fefee3;
 }
