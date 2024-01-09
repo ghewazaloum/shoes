@@ -3,7 +3,7 @@ import shoe from './Assests/Images/shoe.png'
 import { UnFocusedButton } from './components/Button/Button';
 import { Curves,FooterCurves, Navbar,Information ,ShoeContainer,DisplayShoes, Headers, Button, WideButton, Colors, Card,Footer} from './components/index';
 import { TinyGlassContainer } from './sections/GlassContainer/GlassContainer';
-import { ButtonContainer, CardContainer, Container, GlassContainer, ShoesContainer, SmallGlassContainer } from './sections/index';
+import { ButtonContainer, CardContainer, Container, GlassContainer, Separator, ShoesContainer, SmallGlassContainer } from './sections/index';
 
 function App() {
   return (
