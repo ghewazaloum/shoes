@@ -41,15 +41,23 @@ INSTALLED_APPS = [
     # third party packages
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_simplejwt', 
-    # django apps
+    'rest_framework_simplejwt',
+    'corsheaders',
+    'djoser', 
+    # django internal apps
     'shoes',
     'api',
 ]
+CORS_ALLOWED_ORIGINS =[
+    "https://127.0.0.1:8000",
+    "https://127.0.0.1:3000",
+
+] 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -124,7 +132,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -148,3 +157,6 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME":datetime.timedelta(hours=3), # hours = 3
     "REFRESH_TOKEN_LIFETIME":datetime.timedelta(days=1), # days = 1
 }
+
+# STATIC_URL = '/static/'
+
