@@ -24,10 +24,13 @@
 }
 @keyframes ShoesContainer{
     0%{
-        background-image: linear-gradient(to top right,var(--color-dark) 90%,transparent)
+        background-color: var(--color-dark);
+    }
+    50%{
+        background-color: transparent;
     }
     100%{
-        background-color: transparent;
+        background-color: var(--color-dark);
     }
     
 }

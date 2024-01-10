@@ -31,6 +31,7 @@
 }
 .Card:hover{
     transform: scale(0.95);
+    cursor: pointer;
    
 }
 .Card div p{
@@ -44,6 +45,7 @@
 .Card div:nth-child(1){
     height: 70px;
     padding: 5px 10px;
+    text-align: center;
 }
 .Card div:nth-child(2){
     height: 180px;
@@ -69,6 +71,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 1s;
+}
+.Card div:nth-child(3) i:hover{
+    background-color: var(--color-semiDark);
+    cursor: pointer;
 }
 .Card div:nth-child(3) i svg{
     height: 100%;
