@@ -71,7 +71,7 @@
         z-index: 1;
         transition: 2s;
         transform: translateY(-100vh); 
-        box-shadow: 0 0 10px black;
+        box-shadow: 0 0 10px #194129;
         background-image: radial-gradient(circle,#fefee3a9,var(--color-dark));
 
     }
