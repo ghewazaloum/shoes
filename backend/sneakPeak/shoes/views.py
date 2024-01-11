@@ -24,9 +24,22 @@ class CategoriesListAPIVeiw(generics.ListAPIView):
 
 Categories_List_Veiw = CategoriesListAPIVeiw.as_view()    
 
-class CategoryDetailAPIView(generics.RetrieveAPIView):
-    queryset = Category.objects.all()
-    serializer_class = categorySerializer
+class CategoryShoesAPIView(generics.ListAPIView):
+    queryset = Shoe.objects.all()
+    serializer_class = ShoeSerializer
     lookup_field = 'slug'
+    lookup_url_kwarg  = 'slug'
+    def get_queryset(self,*args, **kwargs):
+        slug = self.kwargs.get(self.lookup_url_kwarg)
+        category = Category.objects.get(slug=slug)
+        filtered = Shoe.objects.filter(category=category)
+        if not filtered.exists():
 
-category_detail_api_view = CategoryDetailAPIView.as_view()
+            return super().get_queryset()
+        return filtered
+        
+
+category_details_api_view = CategoryShoesAPIView.as_view()
+
+# class categoryShoesListAPIView(generics.ListAPIView):
+    
