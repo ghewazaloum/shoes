@@ -26,7 +26,7 @@
 }
 .information span{
     font-variant: small-caps;
-     color: var(--color-lightBlue);
+     color: var(--color-beige);
 }
 @media screen and (max-width:650px){
     .information{

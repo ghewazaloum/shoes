@@ -19,6 +19,7 @@
 .Button:hover,.WideButton:hover{
     background-color: rgba(255, 255, 255, 0.226);
     border: 2px var(--color-orange) solid;
+    cursor: pointer;
 }
 .Button:hover > a ,.WideButton:hover >a{ 
     color: var(--color-orange) !important;
@@ -58,6 +59,7 @@
 .UnFocusedButton:hover{
     background-color: rgba(255, 255, 255, 0.226);
     border: 2px var(--color-semiDark) solid;
+    cursor: pointer;
 }
 .UnFocusedButton:hover >a{ 
     color: var(--color-beige) !important;

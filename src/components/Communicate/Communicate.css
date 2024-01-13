@@ -1,0 +1,35 @@
+.communicate{
+    display: flex;
+    gap: 5px;
+    margin-right: 10px;
+}
+.communicate a{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border:2px solid var(--color-dark);
+    display: block;
+    transition: 1s;
+}
+.communicate a:hover{
+    background-image: linear-gradient(to top right,var(--color-orange),transparent);
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.communicate a svg{
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+}
+.communicate a svg path{
+    fill: var(--color-dark);
+}
+@media screen and (max-width:750px){
+    .communicate{
+        gap: 20px;
+        padding-bottom: 10px;
+    }
+    
+}

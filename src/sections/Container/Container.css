@@ -19,19 +19,23 @@
     animation-name: ShoesContainer;
     animation-duration: 3s;
     animation-iteration-count: infinite;
+    background-image: linear-gradient(to top right,var(--color-dark) 2%,transparent)
     
 }
 @keyframes ShoesContainer{
     0%{
-        background-image: linear-gradient(to top right,var(--color-dark) 90%,transparent)
+        background-color: var(--color-dark);
+    }
+    50%{
+        background-color: transparent;
     }
     100%{
-        background-color: transparent;
+        background-color: var(--color-dark);
     }
     
 }
 /* .ShoesContainer:has(img:hover){
-    background-image: linear-gradient(to top right,var(--color-dark) 10%,transparent)
+
 } */
 .ShoesContainer img{
     width: 30%;
@@ -43,9 +47,9 @@
     z-index: -1;
 }
 .ShoesContainer svg path{
-    stroke: var(--color-lightBlue);
+    stroke: var(--color-orange);
     stroke-width: 10px;
-    filter: drop-shadow(0 0 20px var(--color-lightBlue));
+    filter: drop-shadow(0 0 20px var(--color-orange));
 }
 
 @media screen and (max-width:650px){
