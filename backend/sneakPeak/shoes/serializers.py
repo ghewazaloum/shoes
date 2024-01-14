@@ -22,6 +22,7 @@ class colorShoeSerializer(serializers.ModelSerializer):
         fields = [
             
             'name',
+            'hex',
             'thumbnail',
             'image',
             'image2',

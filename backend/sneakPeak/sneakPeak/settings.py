@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'djoser', 
+    'colorfield',
     # django internal apps
     'shoes',
     'api',
