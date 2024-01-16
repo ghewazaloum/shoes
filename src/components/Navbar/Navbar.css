@@ -44,7 +44,6 @@
     display: none;
     font-size: 25px;
     transition: 1s;
-    padding-right:10px;
 }
 .btn:hover{
     color: var(--color-orange);
