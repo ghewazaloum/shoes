@@ -11,7 +11,7 @@ class sizeShoeSerializer(serializers.ModelSerializer):
         fields = [
             'size',
             'quantity',
-            # 'color'
+            'id'
         ]        
 
 class colorShoeSerializer(serializers.ModelSerializer):
@@ -37,7 +37,10 @@ class colorShoeSerializer(serializers.ModelSerializer):
         if not isinstance(obj,ShoeColor):
             return None
         sizes = ShoeSize.objects.filter(color=obj,quantity__gt=0)
-        return sizes.values_list('size','quantity')
+
+        
+        return sizeShoeSerializer(sizes,many=True).data
+        # return sizes.values_list('size','quantity')
 
         
 
