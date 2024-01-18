@@ -95,7 +95,7 @@ class ShoeSerializer(serializers.ModelSerializer):
         if not color.exists():
             return None
         image = color.first().image.url
-        return image
+        return request.build_absolute_uri(image)
 
 
 
