@@ -1,16 +1,12 @@
-import environ
 
+import stripe
 from pathlib import Path
 
 from datetime import timedelta
-
-env = environ.Env(
-    DEBUG = (bool,True)
-)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(BASE_DIR / '.env')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -18,7 +14,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = 'django-insecure-=8q4e_tb4)*+m5os_0wjs&ta(2e1i!29u@xk5_9zkd25(qa5w5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG =True
 
 ALLOWED_HOSTS = []
 
@@ -26,6 +22,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multiselectfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser', 
     'colorfield',
+    
     # django internal apps
     'shoes',
     'api',
