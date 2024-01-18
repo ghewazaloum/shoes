@@ -65,6 +65,6 @@ class ShoesSearchAPIView(generics.ListAPIView):
     queryset = Shoe.objects.all()
     serializer_class = ShoeSerializer
     filter_backends =[filters.SearchFilter]
-    search_fields = ['name','slug','category__name','category__slug']
+    search_fields = ['name','slug','category__name','category__slug','tags__name']
 
 shes_search_api_view = ShoesSearchAPIView.as_view()

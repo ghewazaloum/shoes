@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
-from .models import Shoe,Category,ShoeColor,ShoeSize
+from .models import Shoe,Category,ShoeColor,ShoeSize,Tag
 
 
 
@@ -37,8 +37,6 @@ class colorShoeSerializer(serializers.ModelSerializer):
         if not isinstance(obj,ShoeColor):
             return None
         sizes = ShoeSize.objects.filter(color=obj,quantity__gt=0)
-
-        
         return sizeShoeSerializer(sizes,many=True).data
         # return sizes.values_list('size','quantity')
 
@@ -48,6 +46,8 @@ class ShoeSerializer(serializers.ModelSerializer):
     category_slug = serializers.SerializerMethodField(read_only=True)
     url = serializers.SerializerMethodField(read_only = True)
     colors_url = serializers.SerializerMethodField(read_only=True)
+    image = serializers.SerializerMethodField(read_only=True)
+    tags = serializers.SerializerMethodField(read_only=True)
     class  Meta:
         model = Shoe
         fields = [
@@ -56,8 +56,10 @@ class ShoeSerializer(serializers.ModelSerializer):
             'slug',
             'description',
             'category_slug',
+            'image',
             'url',
-            'colors_url'
+            'colors_url',
+            'tags',
             
         ]
 
@@ -78,9 +80,22 @@ class ShoeSerializer(serializers.ModelSerializer):
         if request is None:
             return None
         return reverse("colorshoe-detail",kwargs={"category_slug":obj.get_category_slug,"slug":obj.slug},request=request)
+    def get_tags(self,obj):
+        request = self.context.get('request')
+        if request is None:
+            return None
+        tags = obj.tags.values_list('name') or None
+        return tags
 
-        
-       
+    def get_image(self,obj):
+        request = self.context.get('request')
+        if request is None:
+            return None
+        color = ShoeColor.objects.filter(shoe=obj)
+        if not color.exists():
+            return None
+        image = color.first().image.url
+        return request.build_absolute_uri(image)
 
 
 
@@ -98,6 +113,13 @@ class categorySerializer(serializers.ModelSerializer):
             'description',
             # 'get_absolute_url',
             'url',
+        ]
+
+class tagsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = [
+            'name',
         ]
 
 
