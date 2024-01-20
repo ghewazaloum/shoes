@@ -2,11 +2,19 @@ from rest_framework import generics,mixins
 from rest_framework import filters
 
 
-from .models import Shoe,Category,ShoeColor,Brand
+from .models import(Shoe,
+                    Category,
+                    ShoeColor,
+                    Brand,
+                    Tag
+                    )
 from .serializers import (ShoeSerializer,
                           categorySerializer,
                           colorShoeSerializer,
-                          BrandSerializer)
+                          BrandSerializer,
+                          TagsSerializers,
+                          homePageSerializer
+                          )
  
 
 class LatestShoesAPIView(generics.ListAPIView):
@@ -94,3 +102,9 @@ class brandShoesListAPIView(generics.ListAPIView):
 
 
 brands_products_api_view = brandShoesListAPIView.as_view() 
+
+
+
+class homePage(generics.ListAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagsSerializers

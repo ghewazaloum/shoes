@@ -115,12 +115,18 @@ class categorySerializer(serializers.ModelSerializer):
             'url',
         ]
 
-class tagsSerializers(serializers.ModelSerializer):
+class TagsSerializers(serializers.ModelSerializer):
+    shoes = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Tag
         fields = [
             'name',
+            'shoes',
         ]
+    def get_shoes(self,obj):
+        filterd_qs = Shoe.objects.filter(tags=obj)
+        
+        return ShoeSerializer(filterd_qs,many=True).data
 
 class BrandSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
@@ -128,7 +134,6 @@ class BrandSerializer(serializers.ModelSerializer):
         model = Brand
         fields = [
             'name',
-            'slug',
             'logo',
             'url',
         ]
@@ -137,6 +142,4 @@ class BrandSerializer(serializers.ModelSerializer):
         if request is None:
             return None
         return reverse("brand-detail",kwargs={"brand_slug":obj.slug},request=request)
-
-
 

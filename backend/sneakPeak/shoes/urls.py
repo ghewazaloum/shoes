@@ -11,7 +11,7 @@ urlpatterns = [
     path('brands/<slug:brand_slug>/',views.brands_products_api_view,name='brand-detail'),
     path('brands/',views.brands_list_api_view,name = 'brand-list'),
     path('categories/<slug:category_slug>/<slug:slug>/colors/',views.color_size_shoe_api_view,name='colorshoe-detail'),
-
+    path('',views.homePage.as_view(),name='home'),
     
 
 

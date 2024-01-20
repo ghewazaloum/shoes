@@ -53,8 +53,7 @@ class Shoe(models.Model):
 
     @property
     def get_category_slug(self):
-        return self.category.slug
-       
+        return self.category.slug   
 
     def __str__(self):
         return self.name
