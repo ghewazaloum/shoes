@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
-from .models import Shoe,Category,ShoeColor,ShoeSize,Tag
+from .models import Shoe,Category,ShoeColor,ShoeSize,Tag,Brand
 
 
 
@@ -121,6 +121,22 @@ class tagsSerializers(serializers.ModelSerializer):
         fields = [
             'name',
         ]
+
+class BrandSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = Brand
+        fields = [
+            'name',
+            'slug',
+            'logo',
+            'url',
+        ]
+    def get_url(self,obj):
+        request = self.context.get('request')
+        if request is None:
+            return None
+        return reverse("brand-detail",kwargs={"brand_slug":obj.slug},request=request)
 
 
 

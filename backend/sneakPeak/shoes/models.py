@@ -46,8 +46,6 @@ class Shoe(models.Model):
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    # image = models.ImageField(upload_to='shoes/', blank=True, null=True)
-    # thumbnail = models.ImageField(upload_to='shoes/',blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag,blank=True)
     class Meta:

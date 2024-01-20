@@ -2,8 +2,11 @@ from rest_framework import generics,mixins
 from rest_framework import filters
 
 
-from .models import Shoe,Category,ShoeColor
-from .serializers import ShoeSerializer,categorySerializer,colorShoeSerializer
+from .models import Shoe,Category,ShoeColor,Brand
+from .serializers import (ShoeSerializer,
+                          categorySerializer,
+                          colorShoeSerializer,
+                          BrandSerializer)
  
 
 class LatestShoesAPIView(generics.ListAPIView):
@@ -50,7 +53,6 @@ class ColorSizeShoeAPIView(generics.ListAPIView):
     lookup_url_kwarg = 'slug'
     def get_queryset(self):
         slug = self.kwargs.get(self.lookup_url_kwarg)
-        print(slug)
         shoe = Shoe.objects.get(slug=slug)
         filtered = ShoeColor.objects.filter(shoe=shoe)
         if not filtered.exists():
@@ -68,3 +70,27 @@ class ShoesSearchAPIView(generics.ListAPIView):
     search_fields = ['name','slug','category__name','category__slug','tags__name']
 
 shes_search_api_view = ShoesSearchAPIView.as_view()
+
+class brandsListAPIView(generics.ListAPIView):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+
+brands_list_api_view = brandsListAPIView.as_view()
+
+class brandShoesListAPIView(generics.ListAPIView):
+    queryset =Shoe.objects.all()
+    serializer_class = ShoeSerializer
+    # lookup_field = 'brand'
+    lookup_url_kwarg = 'brand_slug'
+    def get_queryset(self,*args,**kwargs):
+        slug = self.kwargs.get(self.lookup_url_kwarg)
+        print(slug)
+        brand = Brand.objects.get(slug=slug)
+        print(brand.name)
+        filtered_qs = Shoe.objects.filter(brand=brand) 
+        if not filtered_qs.exists():
+            return Shoe.objects.none()
+        return filtered_qs
+
+
+brands_products_api_view = brandShoesListAPIView.as_view() 
