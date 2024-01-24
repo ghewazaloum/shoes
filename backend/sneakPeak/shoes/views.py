@@ -114,7 +114,7 @@ class TagsShoesAPIView(generics.ListAPIView):
     def get_queryset(self,*args,**kwargs):
         slug = self.kwargs.get(self.lookup_url_kwarg)
         tag = Tag.objects.get(slug=slug).id
-        filtered_qs = Shoe.objects.filter(tags__id= tag) 
+        filtered_qs = Shoe.objects.filter(tags__id= tag)[:4] 
         if not filtered_qs.exists():
             return Shoe.objects.none()
         return filtered_qs
