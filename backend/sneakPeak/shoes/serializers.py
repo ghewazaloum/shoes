@@ -59,8 +59,7 @@ class ShoeSerializer(serializers.ModelSerializer):
             'image',
             'url',
             'colors_url',
-            'tags',
-            
+            'tags',            
         ]
 
     def get_category_slug(self,obj):
@@ -111,23 +110,22 @@ class categorySerializer(serializers.ModelSerializer):
             'name',
             'slug',
             'description',
-            # 'get_absolute_url',
             'url',
         ]
 
 class TagsSerializers(serializers.ModelSerializer):
-    shoes = serializers.SerializerMethodField(read_only=True)
+    url = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Tag
         fields = [
             'name',
-            'shoes',
+            'url',
         ]
-    def get_shoes(self,obj):
-        filterd_qs = Shoe.objects.filter(tags=obj)
-        
-        return ShoeSerializer(filterd_qs,many=True).data
-
+    def get_url(self,obj):
+        request = self.context.get('request')
+        if request is None:
+            return None
+        return reverse("tag-detail",kwargs={"tag_slug":obj.slug},request=request)
 class BrandSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
     class Meta:
@@ -142,4 +140,3 @@ class BrandSerializer(serializers.ModelSerializer):
         if request is None:
             return None
         return reverse("brand-detail",kwargs={"brand_slug":obj.slug},request=request)
-
