@@ -13,7 +13,7 @@ from .serializers import (ShoeSerializer,
                           colorShoeSerializer,
                           BrandSerializer,
                           TagsSerializers,
-                          homePageSerializer
+                        #   homePageSerializer
                           )
  
 

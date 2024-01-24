@@ -1,0 +1,34 @@
+.CardContainer{
+  width: 95%;
+  margin: auto;
+}
+.CardContainer .scroller{
+  width: auto;
+  height: auto;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto !important;
+}
+.scroller-animation{
+  animation-name: fade-left;
+  animation-duration: 2s;
+  animation-timing-function:linear;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+  @keyframes fade-left {
+    0% {
+      transform: translateX(100vh);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(50vh);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
