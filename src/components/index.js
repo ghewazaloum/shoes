@@ -1,0 +1,6 @@
+export {default as Logo} from './Logo/Logo'
+export {default as Search} from './Search/Search'
+export {default as CardInfo} from './CardInfo/CardInfo'
+export {default as StaticImg} from './StaticImg/StaticImg'
+export {default as Heading} from './Heading/Heading'
+export {default as Communicate} from './Communicate/Communicate' 

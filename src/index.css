@@ -2,14 +2,17 @@
 *{
   margin: 0;
   padding: 0;
-  display: flexbox;
+  box-sizing: border-box;
 }
 body{
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display' !important;
+  background-color: var(--color-light);
 }
 :root{
-  --color-dark:#2c6e49; 
-  --color-semiDark:#6eb257 ;
+  --color-dark:black; 
   --color-orange:#ff6700;
-  --color-beige:#fefee3;
+  --color-light:#FFFFFF;
+}
+::-webkit-scrollbar {
+  display: none;
 }

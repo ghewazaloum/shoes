@@ -1,0 +1,12 @@
+.ShoesByTagContainer{
+    width: 100%;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0px;
+  }
