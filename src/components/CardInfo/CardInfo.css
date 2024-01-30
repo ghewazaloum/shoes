@@ -1,7 +1,8 @@
 .card{
     position: relative;
+    width: 300px;
     min-width: 300px !important;
-    min-height:300px !important;
+    min-height:380px !important;
     box-shadow: 0 0 2px var(--color-dark);
     transition: 1s;
 }
@@ -38,7 +39,7 @@
 @media screen and (max-width:600px) {
     .card{
         width: 90%;
-        min-width: 90%;
+        height: auto;
         box-shadow: 0 0 0 var(--color-dark);
     }
     

@@ -1,6 +1,6 @@
 import './Home.css';
 import {StaticImg,Heading} from '../../components/index'
-import { CardContainer,ShoesByTagContainer,Footer} from '../../Sections/index';
+import { CardContainer,ShoesByTagContainer,Form} from '../../Sections/index';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 function Home () {
@@ -30,7 +30,6 @@ function Home () {
             <ShoesByTagContainer shoes={shoes} tag="women"/>
             <Heading statement='for kids'/>
             <ShoesByTagContainer shoes={shoes} tag="kids"/>
-            <Footer/>
         </div>
     );
 }
