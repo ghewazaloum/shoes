@@ -3,20 +3,23 @@ import stripe
 from pathlib import Path
 
 from datetime import timedelta
+import environ
+import os
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=8q4e_tb4)*+m5os_0wjs&ta(2e1i!29u@xk5_9zkd25(qa5w5'
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
+DEBUG =env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -150,14 +153,14 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "AUTH_HEADER_TYPES":["Bearer"], # here I can change token keyword
+    "AUTH_HEADER_TYPES":["Bearer"],
      'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
      'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
      'ROTATE_REFRESH_TOKENS': True,
      'BLACKLIST_AFTER_ROTATION': True
 }
 
-STRIPE_PUBLIC_KEY = 'pk_test_51OZETVAabIlmjPky9a7tgMQDulZJe9SPxmqSKVhU7zEyBRtPsVJyexzew0uT9ySGaY3jgM6TbNdjNbs1uE9gxMn000pSXUCMbH'
-STRIPE_PRIVATE_KEY = 'sk_test_51OZETVAabIlmjPkykJ8jT9OKXNxfBtrIkat8SFA5JZwWEGNBfKfEzidLLIXeOURfkpxEtYcHQJ1SN1IzDXviOmBt00CKakigNm'
+# STRIPE_PUBLIC_KEY = 'pk_test_51OZETVAabIlmjPky9a7tgMQDulZJe9SPxmqSKVhU7zEyBRtPsVJyexzew0uT9ySGaY3jgM6TbNdjNbs1uE9gxMn000pSXUCMbH'
+# STRIPE_SECRET_KEY = 'sk_test_51OZETVAabIlmjPkykJ8jT9OKXNxfBtrIkat8SFA5JZwWEGNBfKfEzidLLIXeOURfkpxEtYcHQJ1SN1IzDXviOmBt00CKakigNm'
 # STATIC_URL = '/static/'
 
