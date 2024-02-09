@@ -6,7 +6,7 @@
 }
 body{
   font-family: 'Playfair Display' !important;
-  background-color: var(--color-light);
+  background-color: var(--color-light) !important;
 }
 :root{
   --color-dark:black; 

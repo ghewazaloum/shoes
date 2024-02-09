@@ -1,0 +1,19 @@
+.ShoeDetails{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shoe-image{
+    width: 50%;
+    height: 100%;
+}
+.shoe-image img{
+    width: 100%;
+    
+}
+.shoe-content{
+    width: 50%;
+    padding: 20px;
+}
