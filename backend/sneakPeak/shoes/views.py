@@ -1,7 +1,9 @@
 from rest_framework import generics,mixins
+from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import filters
 from rest_framework.views import APIView
-
+from .service import Cart
 from .models import(Shoe,
                     Category,
                     ShoeColor,
@@ -120,3 +122,42 @@ class TagsShoesAPIView(generics.ListAPIView):
         return filtered_qs
 
 tag_shoes_api_view = TagsShoesAPIView.as_view()
+
+
+
+class CartAPI(APIView):
+    """
+    Single API to handle cart operations
+    """
+    def get(self, request, format=None):
+        cart = Cart(request)
+
+        return Response(
+            {"data": list(cart.__iter__()), 
+            "cart_total_price": cart.get_total_price()},
+            status=status.HTTP_200_OK
+            )
+
+    def post(self, request, **kwargs):
+        cart = Cart(request)
+
+        if "remove" in request.data:
+            product = request.data["id"]
+            cart.remove(product)
+
+        elif "clear" in request.data:
+            cart.clear()
+
+        else:
+            product = request.data
+            cart.add(
+                    product=product["id"],
+                    quantity=product["quantity"],
+                    overide_quantity=product["overide_quantity"] if "overide_quantity" in product else False
+                )
+
+        return Response(
+            {"message": "cart updated"},
+            status=status.HTTP_202_ACCEPTED)
+
+cart_api_view = CartAPI.as_view()

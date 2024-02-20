@@ -2,7 +2,14 @@ from rest_framework import serializers
 from rest_framework.reverse import reverse
 from .models import Shoe,Category,ShoeColor,ShoeSize,Tag,Brand
 
-
+class ColorInCart(serializers.ModelSerializer):
+    class Meta:
+        model = ShoeColor
+        fields = [
+            'image',
+            'price',
+ 
+        ]
 
 class sizeShoeSerializer(serializers.ModelSerializer):
 
@@ -12,7 +19,19 @@ class sizeShoeSerializer(serializers.ModelSerializer):
             'size',
             'quantity',
             'id'
-        ]        
+        ]   
+
+class ShoeInCartSerializer(serializers.ModelSerializer):
+    color = ColorInCart(read_only=True)
+    class Meta:
+        model = ShoeSize
+        fields = [
+            'size',
+            'quantity',
+            'id',
+            'color'
+        ]
+           
 
 class colorShoeSerializer(serializers.ModelSerializer):
     sizes = serializers.SerializerMethodField(read_only = True)

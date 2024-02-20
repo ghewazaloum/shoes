@@ -6,18 +6,20 @@ from datetime import timedelta
 import environ
 import os
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+# env = environ.Env(
+#     # set casting, default value
+#     DEBUG=(bool, False)
+# )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-=8q4e_tb4)*+m5os_0wjs&ta(2e1i!29u@xk5_9zkd25(qa5w5'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =env('DEBUG')
+# DEBUG =env('DEBUG')
+DEBUG =True
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     # django internal apps
     'shoes',
     'api',
+    'payment'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -160,7 +163,11 @@ SIMPLE_JWT = {
      'BLACKLIST_AFTER_ROTATION': True
 }
 
-# STRIPE_PUBLIC_KEY = 'pk_test_51OZETVAabIlmjPky9a7tgMQDulZJe9SPxmqSKVhU7zEyBRtPsVJyexzew0uT9ySGaY3jgM6TbNdjNbs1uE9gxMn000pSXUCMbH'
-# STRIPE_SECRET_KEY = 'sk_test_51OZETVAabIlmjPkykJ8jT9OKXNxfBtrIkat8SFA5JZwWEGNBfKfEzidLLIXeOURfkpxEtYcHQJ1SN1IzDXviOmBt00CKakigNm'
+STRIPE_PUBLIC_KEY = 'pk_test_51OhozDKQB9oTuSLv6mbcnmNvNtimNFS5IUGX5PjTT0Fec9SMzC8qKNJjapkWxfsZoz4sqvZWvi8usRSsn0OZ1qUp00GYrtghAS'
+STRIPE_SECRET_KEY = 'sk_test_51OhozDKQB9oTuSLvcfurp061VRLfiDqOuHUTISp3FUkxthAamwcer0odN0EOMRCMy7k6Tup6tX1p3v6Qsy5rsE5400jszo9iH0'
+STRIPE_WEBHOOK_KEY = ''
 # STATIC_URL = '/static/'
 
+SITE_URL = 'http://127.0.0.1:8000'
+
+CART_SESSION_ID = 'shoes'
