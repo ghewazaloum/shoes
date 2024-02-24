@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    # path('card/',views.addToCardAPIView.as_view(),name='card-add'),
+    path('cart/',views.CartAPIView.as_view(),name='cart'),
     # path('create-checkout-session/',views.createCheckoutSessionView.as_view(),name='create-checkout-session'),
     # path('test/',views.process_payment)
 ]

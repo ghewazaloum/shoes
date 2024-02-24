@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # django internal apps
     'shoes',
     'api',
-    'payment'
+    'payment',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

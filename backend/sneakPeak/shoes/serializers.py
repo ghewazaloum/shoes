@@ -23,13 +23,14 @@ class sizeShoeSerializer(serializers.ModelSerializer):
 
 class ShoeInCartSerializer(serializers.ModelSerializer):
     color = ColorInCart(read_only=True)
+    # quantityInCart = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = ShoeSize
         fields = [
             'size',
-            'quantity',
             'id',
-            'color'
+            'color',
+
         ]
            
 
@@ -159,3 +160,15 @@ class BrandSerializer(serializers.ModelSerializer):
         if request is None:
             return None
         return reverse("brand-detail",kwargs={"brand_slug":obj.slug},request=request)
+
+# class Cart(serializers.ModelSerializer):
+#     shoes = ShoeInCartSerializer(many=True)
+
+#     class Meta:
+#         model = Cart
+#         fields = [
+#             'id',
+#             'shoes',
+#             'total_price',
+#         ]
+        
