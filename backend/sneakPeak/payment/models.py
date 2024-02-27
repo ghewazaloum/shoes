@@ -32,4 +32,14 @@ class CartItem(models.Model):
     def price(self):
         shoe_price =self.shoe.color.price
         return int(self.quantity)*shoe_price
-        
+
+
+class PaymentHistory(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    cart=models.ForeignKey(Cart, on_delete=models.SET_NULL, blank=True, null=True)
+    date=models.DateTimeField(auto_now_add=True)
+    payment_status=models.BooleanField(default=True)
+
+
+    def __str__(self):
+        return self.product.name

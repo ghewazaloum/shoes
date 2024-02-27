@@ -1,64 +1,25 @@
 from rest_framework.views import APIView,Response
 from rest_framework import generics,permissions,status
-# from shoes.models import Shoe,ShoeColor,ShoeSize
-# from django.shortcuts import redirect
+
 from rest_framework.decorators import api_view
 from rest_framework import permissions
-# from django.core.exceptions import ObjectDoesNotExist
-# # from django.shortcuts import get_or_create
-# import stripe
+
+import stripe
 from django.conf import settings
-
-# from django.views import View
-
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.http import HttpResponse
 
 from .models import Cart,CartItem
-from .serializers import CartSerializer
+from .serializers import CartSerializer,CartItemSerializer
 from shoes.models import ShoeSize
-# class createCheckoutSessionView(APIView):
-
-#     def post(self,request, *args, **kwargs):
-#         try:
-#             checkout_session = stripe.checkout.Session.create(
-#                 line_items=[
-#                     {
-#                         # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-#                         'price': 'price_1Oj7HHKQB9oTuSLvYXLilPH3',
-#                         'quantity': 1,
-#                     },
-#                      print(settings.SITE_URL)
-#                 ],
-#                 payment_method_types=['card',],
-#                 mode='payment',
-#                 success_url=settings.SITE_URL + '/?success=true&session_id={CHECKOUT_SESSION_ID}',
-#                 cancel_url=settings.SITE_URL + '/?canceled=true',
-#             )
-#             return Response({'t':'1'})            
-#         except:
-#             return Response({
-#             'error':'Something went wrong when creating stripe checkout session'}
-#             ,status=status.HTTP_500_INTERNAL_SERVER_ERROR
-#             )
 
 
-# @api_view(['POST'])
-# def process_payment(request):
-#     # token = request.data.get('stripeToken')
-#     amount = request.data.get('amount')  # Amount in cents
-#     # description = request.data.get('description')
 
-#     try:
-#         charge = stripe.Charge.create(
-#             amount=amount,
-#             currency='usd',
-#             # description=description,
-#             # source=token,
-#         )
-#         # Handle successful payment (e.g., create order, send confirmation email)
-#         return Response({'success': True})
-#     except stripe.error.StripeError as e:
-#         # Handle error
-#         return Response({'error': str(e)}, status=400)
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class CartAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -99,3 +60,78 @@ class CartAPIView(APIView):
             'msg':'Cart updated'
         },status=status.HTTP_200_OK)
 
+
+
+class CreateCheckOutSession(APIView):
+    def post(self, request, *args, **kwargs):
+        cart_id=self.kwargs["id"]
+        try:
+            cart=Cart.objects.get(id=cart_id)
+            cart_items = CartItem.objects.filter(cart=cart)
+            items = CartItemSerializer(cart_items,many=True).data
+            checkout_session = stripe.checkout.Session.create(
+                line_items=[
+                    {
+                       
+                        'price_data': {
+                            'currency':'usd',
+                             'unit_amount':int(cart.total_price) * 100,
+                             'product_data':{
+                                 'products':items,
+                                 
+
+                             }
+                        },
+                        
+                    },
+                ],
+                metadata={
+                    "cart_id":cart.id
+                },
+                mode='payment',
+                success_url=settings.SITE_URL + '?success=true',
+                cancel_url=settings.SITE_URL + '?canceled=true',
+            )
+            return redirect(checkout_session.url)
+        except Exception as e:
+            return Response({'msg':'something went wrong while creating stripe session','error':str(e)}, status=500)
+
+
+@csrf_exempt
+def stripe_webhook_view(request):
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+        payload, sig_header, settings.STRIPE_SECRET_WEBHOOK
+        )
+    except ValueError as e:
+        # Invalid payload
+        return Response(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return Response(status=400)
+
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+
+        print(session)
+        customer_email=session['customer_details']['email']
+        cart_id=session['metadata']['cart_id']
+        cart=Cart.objects.get(id=cart_id)
+        #sending confimation mail
+        send_mail(
+            subject="payment sucessful",
+            message=f"thank for your purchase your order is ready.  download url {cart.book_url}",
+            recipient_list=[customer_email],
+            from_email="sneakpeakofficail@gamil.com"
+        )
+
+        #creating payment history
+        # user=User.objects.get(email=customer_email) or None
+
+        PaymentHistory.objects.create(product=cart, payment_status=True)
+    # Passed signature verification
+    return HttpResponse(status=200)

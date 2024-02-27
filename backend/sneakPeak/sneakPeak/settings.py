@@ -165,9 +165,9 @@ SIMPLE_JWT = {
 
 STRIPE_PUBLIC_KEY = 'pk_test_51OhozDKQB9oTuSLv6mbcnmNvNtimNFS5IUGX5PjTT0Fec9SMzC8qKNJjapkWxfsZoz4sqvZWvi8usRSsn0OZ1qUp00GYrtghAS'
 STRIPE_SECRET_KEY = 'sk_test_51OhozDKQB9oTuSLvcfurp061VRLfiDqOuHUTISp3FUkxthAamwcer0odN0EOMRCMy7k6Tup6tX1p3v6Qsy5rsE5400jszo9iH0'
-STRIPE_WEBHOOK_KEY = ''
+STRIPE_WEBHOOK_KEY = 'whsec_D6WhpGGDcNVRhotcoiptoAtBnc1MQvyT'
 # STATIC_URL = '/static/'
 
 SITE_URL = 'http://127.0.0.1:8000'
 
-CART_SESSION_ID = 'shoes'
+EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"

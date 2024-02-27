@@ -1,10 +1,13 @@
 from rest_framework import serializers
+from rest_framework.fields import CurrentUserDefault
+
+
 from .models import Cart,CartItem
 from shoes.serializers import ShoeInCartSerializer
 
 class CartItemSerializer(serializers.ModelSerializer):
     shoe = ShoeInCartSerializer(read_only=True)
-    # price = serializers.SerializerMethodField(read_only=True)
+   
     class Meta:
         model = CartItem
         fields = [
@@ -24,4 +27,8 @@ class CartSerializer(serializers.ModelSerializer):
         items = CartItem.objects.filter(cart=obj)
         items = CartItemSerializer(items,many=True,read_only=True).data
         return items
-    
+
+
+
+
+

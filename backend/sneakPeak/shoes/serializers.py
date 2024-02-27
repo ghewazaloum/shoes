@@ -161,14 +161,3 @@ class BrandSerializer(serializers.ModelSerializer):
             return None
         return reverse("brand-detail",kwargs={"brand_slug":obj.slug},request=request)
 
-# class Cart(serializers.ModelSerializer):
-#     shoes = ShoeInCartSerializer(many=True)
-
-#     class Meta:
-#         model = Cart
-#         fields = [
-#             'id',
-#             'shoes',
-#             'total_price',
-#         ]
-        
