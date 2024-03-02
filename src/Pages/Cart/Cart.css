@@ -1,0 +1,26 @@
+.cartDiv{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+.buttons{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+@media screen and (max-width:650px){
+    .buttons{
+        flex-direction: column;
+        width: 100%;
+        gap: 0px;
+    }
+    .cartDiv{
+        width: 80%;
+        padding: 0;
+        flex-direction: column;
+    }
+}

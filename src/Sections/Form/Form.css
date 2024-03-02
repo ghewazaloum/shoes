@@ -1,0 +1,118 @@
+.FormContainer{
+    display: none;
+    position: fixed;
+    top:20%;
+    width: 400px;
+    height: auto;
+    padding: 20px;
+    color: var(--color-light);
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #000000c2;
+        /* background-color: rgba(255,255,255,.2);
+    backdrop-filter: blur(2px); */
+    border: 2px solid rgba(255,255,255,.2);
+    z-index: 1;
+    border-radius: 6px;
+}
+.FormContainer-display{
+    display: block;
+}
+
+.FormContainer .btn-close{
+    position: absolute;
+    color: var(--color-orange) !important;
+    font-weight: 900;
+    background-color: var(--color-light);
+    right: 10px;
+    top: 10px;
+}
+
+.FormContainer .inputBox{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 6px;
+    margin:30px 0;
+    transition: 1s;
+}
+.FormContainer .inputBox input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: var(--color-light);
+}
+.FormContainer .inputBox input::placeholder{
+    color: var(--color-light);
+}
+.FormContainer .inputBox i{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.FormContainer .forget-password{
+    font-size: 14px;
+    transition: 1s;
+}
+.FormContainer .forget-password:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--color-orange);
+
+}
+.FormContainer button{
+    width: 100%;
+    border-radius: 6px;
+    height:50px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    color: var(--color-dark);
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: 1s;
+}
+.FormContainer p{
+    font-size: 14px;
+}
+.FormContainer p a{
+    text-transform: capitalize;
+    transition: 1s !important;
+    color: var(--color-light);
+}
+.FormContainer p a:hover{
+    text-decoration: underline !important;
+    cursor: pointer;
+    color: var(--color-orange) !important;
+}
+.FormContainer .inputBox:hover,.FormContainer button:hover{
+    transform: scale(0.98);
+}
+.FormContainer .inputBox input:focus{
+    cursor: pointer;
+}
+.FormContainer .inputBox input:-webkit-autofill,
+.FormContainer .inputBox input:-webkit-autofill:hover, 
+.FormContainer .inputBox input:-webkit-autofill:focus {
+    border: none;
+    outline: none;
+    padding: 10px;
+    -webkit-text-fill-color: var(--color-light);
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: 'Playfair Display' !important;
+    font-variant: normal;
+  }
+@media screen and (max-width:400px){
+    .FormContainer{
+        width: 100%;
+    }
+    
+}

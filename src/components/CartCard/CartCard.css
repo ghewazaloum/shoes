@@ -1,0 +1,72 @@
+.CartCard{
+    position: relative;
+    width: 40%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--color-orange);
+}
+.CartCard .quantity{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-orange);
+    color: var(--color-light);
+
+}
+.CartCard .quantity p{
+    font-size: 14px;
+    font-family: sans-serif;
+}
+.CartCard .deleteOrder{
+    transition: 3s;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+.CartCard .deleteOrder:hover{
+    background-color:rgba(0, 0, 0, .3);
+    color: var(--color-dark);
+    cursor: pointer;
+}
+.CartCard img{
+    height: 100%;
+}
+.CartCard .info{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 20px;
+}
+.CartCard div p{
+    margin: 0;
+    font-weight: bold;
+}
+.CartCard div span{
+    font-weight: bold;
+    font-size: 14px;
+}
+@media screen and (max-width:1000px) {
+    .CartCard{
+        width: 100%;
+    }
+}
+@media screen and (max-width:330px) {
+    .CartCard div{
+        padding: 10px;
+    }
+}

@@ -1,0 +1,132 @@
+.ShoeDetails{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.shoe-image{
+    width: 50%;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+}
+.shoe-image .image-scroller{
+    width: auto;
+    display: flex;
+    animation-name:image-scroller;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+.shoe-image .image-scroller:hover{
+    animation-play-state:paused ;
+}
+@keyframes image-scroller {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(-200%);
+      }
+    75% {
+      transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(auto);
+      }
+}
+@keyframes twoImage_scroller {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(auto);
+      }
+}
+
+.shoe-image img{
+    width: 100%;
+    height: 100%;
+}
+.shoe-content{
+    position: relative;
+    width: 50%;
+    background-color: var(--color-orange);
+    color: var(--color-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    padding: 20px;
+
+    padding-bottom: 100%;
+    margin-bottom: -100%
+}
+.shoe-content h2{
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.shoe-content span{
+    color: var(--color-dark) ;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.shoe-content p{
+    font-size: 16px;
+}
+.shoe-content .color_scroller{
+    width: 95%;
+    height: auto;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto !important;
+    margin-bottom: 10px;
+}
+.shoe-content .color_scroller .color{
+    width: 50px;
+    min-width: 50px !important;
+    min-height:30px !important;
+    cursor: pointer;
+    transition: 1s;
+}
+.shoe-content .size_scroller{
+    width:87%;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto !important;
+}
+.shoe-content .size_scroller .size{
+    min-width: 30px;
+    height: 25px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 1s;
+}
+.shoe-content .size_scroller .size:hover,.shoe-content .color_scroller .color:hover{
+    transform: scale(1.1);
+}
+.shoe-content .size_scroller .size p{
+    width: 50%;
+    height: 50%;
+}
+@media screen and (max-width:650px) {
+    .ShoeDetails .mainContainer{
+        flex-direction: column;
+        width: 100%;
+    }
+    .shoe-content , .shoe-image{
+        width: 100%;
+    }
+    
+}
