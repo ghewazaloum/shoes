@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import './Button.css'
 import AuthContext from '../../Context/AuthContext';
+import FormDisplayContext from '../../Context/FormDisplayContext';
 ;
 function Button({content}){
     return(
@@ -13,15 +14,16 @@ function AddButton({content}){
     );
 }
 function PaymentButton({content}){
+    const {ShowPaymentForm} = useContext(FormDisplayContext)
     return(
-    <button className='Payment'>{content}</button>
+    <button onClick={()=>{ShowPaymentForm()}} className='Payment'>{content}</button>
     );
 }
 function ClearButton({content}){
     const {clearCart} = useContext(AuthContext)
 
     return(
-    <button onClick={()=>{clearCart()}} className='clear'>{content}</button>
+    <button  onClick={()=>{clearCart()}} className='clear'>{content}</button>
     );
 }
 export default Button

@@ -3,20 +3,23 @@ import {useState,useEffect,createContext, useContext} from 'react'
 import FormDisplayContext from './FormDisplayContext'
 import ShoesContext from './ShoesContext';
 import ToastContext from "./ToastContext";
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '../components/index';
 
 const AuthContext = createContext()
 
 export default AuthContext
 
 export const AuthProvider = ({children}) => {
-    const {UnShowForm,setFormDisplay,register,ShowForm} = useContext(FormDisplayContext); 
+    const navigate = useNavigate()
+    const {UnShowForm,setFormDisplay,register,ShowForm,setPaymentFormDisplay} = useContext(FormDisplayContext); 
     const {toastDisplay} = useContext(ToastContext); 
     let [user ,setUser ] = useState(null);
     let [authTokens,setAuthTokens] =useState(()=>localStorage.getItem('authTokens')?JSON.parse(localStorage.getItem('authTokens')):null);
     const [isLoggedIn,setIsLoggedIn]=useState(()=>localStorage.getItem('authTokens')?true:false);
     const [loading,setLoading] = useState(true)
     const [cartShoes,setCartShoes] = useState ();
-    const {neededQuantity} = useContext(ShoesContext);//needed quan
+    const {neededQuantity,setneededQuantity} = useContext(ShoesContext);//needed quan
 
     //send the inputs for login or signup and handle the results
     const submit = e => {
@@ -172,6 +175,9 @@ export const AuthProvider = ({children}) => {
         if(document.querySelector("#FormContainer")){
             setFormDisplay(document.querySelector("#FormContainer"));
             }//initial value for formDisplay is the form itself   
+        if(document.querySelector(".stripe-form")){
+            setPaymentFormDisplay(document.querySelector(".stripe-form"));
+            }//initial value for paymentformDisplay is the form itself       
         if (loading){
             refreshTokens();
         }
@@ -198,6 +204,7 @@ export const AuthProvider = ({children}) => {
             })   
     ]
     const addToCart = (SelectedSizeID)=>{
+        console.log(neededQuantity);
         if(neededQuantity!==0){
             axios.post('http://127.0.0.1:8000/payment/cart/', {
                 id:SelectedSizeID,
@@ -209,11 +216,15 @@ export const AuthProvider = ({children}) => {
             })
             .then(function (response) {
                 toastDisplay('success',response.data.msg)
+                setneededQuantity(0)
             })
             .catch(function (error) {
             console.log(error);
             });
-    }}
+    }else{
+        toastDisplay('warn','you must choose color,size and quantity to complete this process')
+    }
+}
     const removeFromCart = (SelectedSizeID)=>{
         if(SelectedSizeID){
             axios.post('http://127.0.0.1:8000/payment/cart/', {
@@ -245,6 +256,7 @@ export const AuthProvider = ({children}) => {
             .then(function (response) {
                 toastDisplay('success',response.data.msg)
                 cart();
+                navigate('/')
             })
             .catch(function (error) {
             console.log(error);
@@ -270,7 +282,7 @@ export const AuthProvider = ({children}) => {
 
     return(
         <AuthContext.Provider value={contextDaTa}>
-            {loading?null:children}
+            {loading?<Loader/>:children}
         </AuthContext.Provider>
     )
 }

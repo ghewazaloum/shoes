@@ -6,16 +6,19 @@ import { AuthProvider} from './Context/AuthContext';
 import {ShoesProvider} from './Context/ShoesContext';
 import { FormDisplayProvider } from './Context/FormDisplayContext';
 import { ToastProvider } from './Context/ToastContext';
+import {StripeContainer} from './components/index';
 
 
 
 function App() {
+
   return (
     <div className="App">
       <ToastProvider>
       <FormDisplayProvider>
       <ShoesProvider>
         <AuthProvider>
+         <StripeContainer/>
             <NavBar/>
             <Form/>
             <Routes>
