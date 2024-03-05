@@ -7,6 +7,7 @@ export const FormDisplayProvider = ({children}) => {
     const [PaymentFormDisplay,setPaymentFormDisplay]=useState('');//paymentForm
     const [register,setRegister] = useState(false);
     const [Flag,setFlag] =useState(null);//to control which icon opens or closes the form
+    const [address,setAddress] =useState(false);
 
 //when i close the form (there is different ways)
    const UnShowForm= ()=>{
@@ -37,15 +38,16 @@ const ShowForm =(flag)=>{
 }
 const UnShowPaymentForm= ()=>{
     PaymentFormDisplay.classList.remove("stripe-form-display");
-    document.querySelector(".stripe-form").reset();
+    console.log(document.querySelector(".stripe-form"));
+    document.getElementById("stripe-form").reset();
     const inputs =document.getElementsByClassName('inputBox');
+    setAddress(false)
     for (const input of inputs) { 
         if(input.children[0].value===''){
             input.style.border="2px solid rgba(255,255,255,.2)"
     }}
 }
 const ShowPaymentForm =()=>{
-    console.log(PaymentFormDisplay.className);
     if(PaymentFormDisplay.className==="stripe-form"){
         PaymentFormDisplay.classList.add("stripe-form-display");
     }else if(PaymentFormDisplay.className==="stripe-form stripe-form-display"){
@@ -63,7 +65,9 @@ const ShowPaymentForm =()=>{
         setFlag:setFlag,
         ShowPaymentForm:ShowPaymentForm,
         UnShowPaymentForm:UnShowPaymentForm,
-        setPaymentFormDisplay:setPaymentFormDisplay
+        setPaymentFormDisplay:setPaymentFormDisplay,
+        address:address,
+        setAddress:setAddress
 
     }
     return(

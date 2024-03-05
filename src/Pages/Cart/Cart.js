@@ -34,7 +34,7 @@ function Cart () {
                 <>
                     <Heading statement='my cart' money={`- ${cartShoes.cart_details.total_price} $`}/>
                     <div className='buttons'>
-                        <PaymentButton content='payment'/>
+                        <PaymentButton content='checkout'/>
                         <ClearButton content='clear'/>
                     </div>
                 </>

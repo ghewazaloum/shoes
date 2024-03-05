@@ -245,7 +245,7 @@ export const AuthProvider = ({children}) => {
             });
     }}
 
-    const clearCart = ()=>{
+    const clearCart = (msg)=>{
             axios.post('http://127.0.0.1:8000/payment/cart/', {
                 "clear":true,
             },{
@@ -254,7 +254,9 @@ export const AuthProvider = ({children}) => {
             }
             })
             .then(function (response) {
-                toastDisplay('success',response.data.msg)
+                if(msg){
+                    toastDisplay('success',response.data.msg)
+                }
                 cart();
                 navigate('/')
             })

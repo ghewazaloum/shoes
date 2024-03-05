@@ -23,7 +23,7 @@ function ClearButton({content}){
     const {clearCart} = useContext(AuthContext)
 
     return(
-    <button  onClick={()=>{clearCart()}} className='clear'>{content}</button>
+    <button  onClick={()=>{clearCart('cart updated')}} className='clear'>{content}</button>
     );
 }
 export default Button
