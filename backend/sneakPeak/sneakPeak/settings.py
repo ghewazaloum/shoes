@@ -6,19 +6,18 @@ from datetime import timedelta
 import environ
 import os
 
-# env = environ.Env(
-#     # set casting, default value
-#     DEBUG=(bool, False)
-# )
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = 'django-insecure-=8q4e_tb4)*+m5os_0wjs&ta(2e1i!29u@xk5_9zkd25(qa5w5'
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG =env('DEBUG')
-DEBUG =True
+DEBUG =env('DEBUG')
 
 
 ALLOWED_HOSTS = ["*"]
@@ -50,11 +49,7 @@ INSTALLED_APPS = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-# CORS_ALLOWED_ORIGINS =[
-#     "https://127.0.0.1:8000",
-#     "https://127.0.0.1:3000",
 
-# ] 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,14 +88,16 @@ WSGI_APPLICATION = 'sneakPeak.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('SQL_DB_NAME'),
+        'USER':  env('SQL_DB_USER'),
+        'PASSWORD': env('SQL_DB_PASSWORD'),
+        'HOST': env('SQL_DB_HOST'),   # Or the host where your MySQL server is running
+        'PORT': '3306',        # MySQL default port
     }
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,8 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -163,11 +158,10 @@ SIMPLE_JWT = {
      'BLACKLIST_AFTER_ROTATION': True
 }
 
-STRIPE_PUBLIC_KEY = 'pk_test_51OhozDKQB9oTuSLv6mbcnmNvNtimNFS5IUGX5PjTT0Fec9SMzC8qKNJjapkWxfsZoz4sqvZWvi8usRSsn0OZ1qUp00GYrtghAS'
-STRIPE_SECRET_KEY = 'sk_test_51OhozDKQB9oTuSLvcfurp061VRLfiDqOuHUTISp3FUkxthAamwcer0odN0EOMRCMy7k6Tup6tX1p3v6Qsy5rsE5400jszo9iH0'
-STRIPE_WEBHOOK_KEY = 'whsec_D6WhpGGDcNVRhotcoiptoAtBnc1MQvyT'
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env('STRIP_SECRET_KEY')
+STRIPE_WEBHOOK_KEY = env('STRIPE_WEBHOOK_KEY')
 # STATIC_URL = '/static/'
 
-SITE_URL = 'http://127.0.0.1:8000'
 
 EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
