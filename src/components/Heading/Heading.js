@@ -1,7 +1,7 @@
 import './Heading.css'
-function Heading({statement}){
+function Heading({statement,money}){
     return(
-        <h3 className='heading'>{statement}</h3>
+        <h3 className='heading'>{statement} {money}</h3>
     );
 }
 export default Heading

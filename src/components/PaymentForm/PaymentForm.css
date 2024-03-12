@@ -1,0 +1,93 @@
+.stripe-form{
+	display: none;
+	position: fixed;
+	top:20%;
+	width: 400px;
+	height: auto;
+	padding: 20px;
+	color: var(--color-light);
+	text-align: center;
+	text-transform: capitalize;
+	background-color: #000000c2;
+	border: 2px solid rgba(255,255,255,.2);
+	z-index: 1;
+	border-radius: 6px;
+}
+.stripe-form-display{
+    display: flex;
+	flex-direction: column;
+	gap:20px;
+}
+.stripe-form .btn-close{
+    position: absolute;
+    color: var(--color-orange) !important;
+    font-weight: 900;
+    background-color: var(--color-light);
+    right: 10px;
+    top: 10px;
+}
+.stripe-form .inputBox{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 6px;
+    transition: 1s;
+}
+.stripe-form .inputBox input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: var(--color-light);
+}
+.stripe-form  .inputBox input::placeholder,.stripe-form #card-element::placeholder{
+    color: rgba(255,255,255,.4);
+}
+.stripe-form button{
+    width: 100%;
+    border-radius: 6px;
+    height:50px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    color: var(--color-dark);
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: 1s;
+}
+.form-row{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 10px;
+}
+.stripe-form .inputBox input:-webkit-autofill,
+.stripe-form .inputBox input:-webkit-autofill:hover, 
+.stripe-form .inputBox input:-webkit-autofill:focus {
+    border: none;
+    outline: none;
+    padding: 10px;
+    -webkit-text-fill-color: var(--color-light);
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: 'Playfair Display' !important;
+    font-variant: normal;
+  }
+.stripe-form .inputBox:hover,.stripe-form button:hover{
+transform: scale(0.98);
+}
+.stripe-form .inputBox input:focus{
+    cursor: pointer;
+}  
+@media screen and (max-width:400px){
+    .stripe-form{
+        width: 100%;
+    }
+    
+}

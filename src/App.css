@@ -1,6 +1,10 @@
 .App{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: stretch;
+    height: auto;
+    min-height: 100vh;
+    
 }

@@ -1,9 +1,10 @@
+/* ....................links........................ */
 .NavBar{
     position: relative;
     width: 100%;
     height: auto;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: stretch;
     flex-wrap: wrap;
     padding: 10px 0px;
@@ -17,17 +18,19 @@
     align-items: center;
     justify-content: space-around;
 }
-.NavBar .Links a:hover{
-    transition: 1s;
-    color: var(--color-orange);
-}
 .NavBar .Links a{
     color: var(--color-dark);
     font-size: 20px;
 }
+.NavBar .Links a:hover{
+    transition: 1s;
+    color: var(--color-orange);
+}
 .hamburgar,.closeIcon,.searchIcon{
     display: none;
 }
+/* .....................categories....................... */
+
 .NavBar .categories{
     width: 100%;
     padding:10px;
@@ -36,8 +39,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
 }
-.NavBar .categories a{
+/* text in the categories sidebar */
+.NavBar .categories .category{
     text-decoration: none;
     color: var(--color-dark);
     font-weight: 600;
@@ -45,13 +50,76 @@
     text-transform: uppercase;
     cursor: pointer;
 }
-.NavBar .categories a:hover{
+/* icons in the categories sidebar */
+.NavBar .categories a{
+    color: var(--color-dark);
+}
+/* brand div */
+.NavBar .categories .divCategories{
+    position: relative;
+}
+/* brand ul */
+.brands{
+    padding: 0;
+    position: absolute;
+    top: 30px;
+    min-width: 100px;
+    z-index: 1;
+    list-style: none;
+    border: 1px solid var(--color-dark);
+    background-color: rgba(255, 255, 255,.4);
+    backdrop-filter: blur(10px);
+    display: none;
+}
+.responseveBrandUl{
+    display: block;
+}
+.brands li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 35px;
+    border-bottom: 1px solid var(--color-dark);
+    text-align: center;
+    transition: 1s;
+
+}
+.brands li .brand{
+   text-decoration: none;
+   color: var(--color-dark);
+   font-weight: 600;
+   text-transform: capitalize;
+   transition: 1s;
+}
+.brands li:last-child {
+    border-bottom: 0px solid var(--color-dark);
+  }
+.brands li:hover{
+    background-color: var(--color-orange);
+}
+.brands li:hover > .brand{
+    color: var(--color-light);
+}
+.NavBar .categories .category:hover{
     transition: 1s;
     color: var(--color-orange);
 }
 .NavBar .categories .userIcon{
     display: none;
 }
+.brands_Name{
+    display: none;
+}
+.sidebar_heading{
+    display: none;
+}
+.NavBar .categories .logout_sidebar{
+    display: none;
+}
+
+
 
 @media screen and (max-width:800px) {
     .searchIcon,.hamburgar{
@@ -64,20 +132,23 @@
         right:10px;
         width: fit-content !important;
     }
-    .userIcon{
+    .userIcon ,.Logout{
         display: none;
     }
     .NavBar .categories{
-        padding:60px 20px;
+        padding-top:60px ;
+        padding-left: 20px;
+        padding-right: 20px;
         position: fixed;
         top: 0px;
         right: 0;
-        height:100%;
+        min-height:100%;
+        height: 100%;
         width: 50%;
         display: flex;
         flex-direction: column;
-        align-items: start;
-        justify-content: start; 
+        align-items: flex-start;
+        justify-content: flex-start; 
         flex-wrap: nowrap;
         overflow-y: auto;
         gap: 20px;
@@ -86,6 +157,27 @@
         transform: translateX(100vh); 
         box-shadow: 0 0 10px var(--color-dark);
         background-color: var(--color-light);
+    }
+    .NavBar .categories .logout_sidebar{
+        min-height: 40px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-orange);
+        border: 2px solid transparent;
+        color: var(--color-light);
+        font-weight: 500;
+        text-transform: capitalize;
+        margin-top: auto;
+        transition: 1s;
+        letter-spacing: 1px;
+    }
+    .NavBar .categories .logout_sidebar:hover{
+        background-color: rgba(255, 255, 255,.4);
+        color: var(--color-orange);
+        border: 2px solid var(--color-orange);
+        font-weight: 800;
     }
     .NavBar .categories a{
         width: 100%;
@@ -99,5 +191,30 @@
     }
     .NavBar .responseveUl{
         transform: none; 
+    }
+    .NavBar .categories .divCategories{
+        display: none;
+    }
+    .brands_Name{
+        display: block;
+        text-decoration: none;
+        color: var(--color-dark);
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: uppercase;
+        cursor: pointer;
+        width: 100%;
+    }
+    .sidebar_heading{
+        display: block;
+        border-top: 2px solid var(--color-orange);
+        border-bottom: 2px solid var(--color-orange);
+        width: 100%;
+        padding: 18px 0;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: var(--color-orange);
     }
 }

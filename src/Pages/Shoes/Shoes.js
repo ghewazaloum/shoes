@@ -1,41 +1,56 @@
-import { CardInfo } from '../../components/index';
+import { CardInfo ,Pagination} from '../../components/index';
 import './Shoes.css'
-import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { CategoriesContext, CategoryNameContext, SelectedShoeContext } from "../../App";
+import ShoesContext from '../../Context/ShoesContext';
+import { useContext, useEffect } from 'react';
+
 function Shoes (){
-  const categories=useContext(CategoriesContext);
-  const [Category_Shoes,setCategory_Shoes] =useState('');
-  const {CategoryName} = useContext(CategoryNameContext);
-  let shoe_By_Category;
-    useEffect(()=>{
-        if(categories!==''){
-            categories.map((category)=>{
-                {category.name===CategoryName&&
-                    axios.get(`${category.url}`)
-                    .then(res=>{
-                        setCategory_Shoes(res.data.results);
-                    })
-                }
-        })
+  const {SearchedResults,setSearchedResults,BrandShoes,setBrandShoes
+    ,CategoryShoes,setCategoryShoes,setShoesInPageShoes,
+    shoesInPageShoes}=useContext(ShoesContext);
+
+  let shoe;//for mapping
+
+
+    useEffect(()=>{     
+        if(CategoryShoes!==''){
+            console.log(CategoryShoes);
+            setShoesInPageShoes(CategoryShoes);
         }
-    },[categories,CategoryName])
-  if(Category_Shoes!==''){
-    shoe_By_Category =Category_Shoes.map((shoe_By_Category)=>{
-        return(
-            <CardInfo
-                key={shoe_By_Category.pk}
-                pk={shoe_By_Category.pk}
-                image={shoe_By_Category.image}
-                name={shoe_By_Category.name}
-                category_slug={shoe_By_Category.category_slug}
-                />
-        );
-    })
-}
+        if(SearchedResults!==''){
+            console.log(SearchedResults);
+            setShoesInPageShoes(SearchedResults);
+        }
+        if(BrandShoes!==''){
+            console.log(BrandShoes);
+            setShoesInPageShoes(BrandShoes);
+        }
+        setCategoryShoes('');
+        setSearchedResults('');
+        setBrandShoes('');
+    },[CategoryShoes,SearchedResults,BrandShoes,setCategoryShoes,setBrandShoes,setSearchedResults])
+
+    //mapping shoes
+    if(shoesInPageShoes!==''){
+        shoe =shoesInPageShoes?.results?.map((shoe)=>{
+            return(
+                <CardInfo
+                    key={shoe.pk}
+                    url={shoe.url}
+                    image={shoe.image}
+                    name={shoe.name}
+                    category_slug={shoe.category_slug}
+                    />
+            );
+        })
+    }
+
     return(
-        <div className="Shoes">
-            {shoe_By_Category }
+        <div className='shoesPage'>
+            <div className="Shoes">
+                {shoe}
+            </div>
+            {shoe&&
+            <Pagination />}
         </div>
     );
 }

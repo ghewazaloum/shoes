@@ -1,0 +1,40 @@
+.btn-group {
+    width: 90px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light);
+    transition: border 1s ease;
+    border-radius: 0px;
+    margin-bottom: 10px;
+  }
+
+  .btn-group .increment-btn,.btn-group .decrement-btn {
+    width: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    border: none;
+    cursor: pointer;
+    transition: all 1s ease;
+  }
+ 
+  .btn-group .increment-btn:hover,.btn-group .decrement-btn:hover {
+      color: var(--color-orange);
+  }
+  
+  .btn-group div {
+    width: 30px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark);
+    border-left: 1px solid var(--color-dark);
+    border-right: 1px solid var(--color-dark);
+  } 

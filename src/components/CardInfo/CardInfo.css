@@ -5,6 +5,7 @@
     min-height:380px !important;
     box-shadow: 0 0 2px var(--color-dark);
     transition: 1s;
+    border-radius: 0px;
 }
 .card .imagebox{
     width: 100%;
@@ -19,22 +20,30 @@
     height: auto;
 }
 .card .cardContent{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: auto !important;
+    height: 80px !important;
     background-color: var(--color-orange);
+    padding:1px;
+}
+.card .cardContent h5{
     color: var(--color-light);
     text-align: center !important;
     text-transform: capitalize;
+    width: 100%;
 }
-.card .cardContent h6{
+/* .card .cardContent h6{
     font-variant:small-caps;
-}
+} */
 .card:hover{
     scale: 0.98 !important;
-    box-shadow: 0 0 10px var(--color-dark);
+    box-shadow: 0 0 2px var(--color-dark);
 }
 @media screen and (max-width:600px) {
     .card{

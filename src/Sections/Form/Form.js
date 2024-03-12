@@ -1,61 +1,58 @@
 import './Form.css'
-import {Button, Input,InputBox} from '../../components/index'
+import {Button,InputBox} from '../../components/index'
 import { FaUser } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FormDisplayContext } from '../../App';
+import FormDisplayContext from '../../Context/FormDisplayContext';
+import AuthContext from '../../Context/AuthContext';
+
+
 function Form (){
-    const [register,setRegister] = useState(false);
-    const {FormDisplay,setFormDisplay} = useContext(FormDisplayContext);
-    const SwitchToRegister=()=>{
-        setRegister(true);
-        document.querySelector('.FormContainer').style.top='0px';
-    }
-    const UnShowForm= ()=>{
-        FormDisplay.classList.remove("FormContainer-display");
-    }
+    const { SwitchToRegister ,register} = useContext(FormDisplayContext); 
+    const {submit ,UnShowForm} = useContext(AuthContext); 
+
     return(
-        <div id='FormContainer' className="FormContainer">
-            <form action=''>
+        <div autoComplete="off" id='FormContainer' className="FormContainer">
+            <form id="myForm" onSubmit={submit} action=''>
                 <IoIosClose onClick={()=>{UnShowForm()}} className='btn-close'/>
                 {register===false?
-                <>
+                <div>
                 <h2>login</h2>
                 <InputBox>
-                    <Input text='username' type='text'/>
+                    <input className='login' name='username' placeholder='username' type='text'/>
                     <i><FaUser/></i>
                 </InputBox>
                 <InputBox>
-                    <Input text='password' type='text'/>
+                    <input className='login' name='password' placeholder='password' type='password'/>
                     <i><RiLockPasswordFill/></i>
                 </InputBox>
                 <h1 className='forget-password'>forget password?</h1>
-                <Button content='login'/>
+                <Button type='submit' content='login'/>
                 <p>dont have an account? <Link onClick={()=>{SwitchToRegister()}}>register</Link> </p> 
-                </>:
+                </div>:
                 <>
                 <h2>register</h2>
                 <InputBox>
-                    <Input text='first name' type='text'/>
+                    <input name='first_name' placeholder='first name' type='text'/>
                 </InputBox>
                 <InputBox>
-                    <Input text='last name' type='text'/>
+                    <input name="last_name" placeholder='last name' type='text'/>
                 </InputBox>
                 <InputBox>
-                    <Input text='username' type='text'/>
+                    <input name='username' placeholder='username' type='text'/>
                 </InputBox>
                 <InputBox>
-                    <Input text='email' type='email'/>
+                    <input name='email' placeholder='email' type='email'/>
                 </InputBox>
                 <InputBox>
-                    <Input text='password' type='password'/>
+                    <input name='password' placeholder='password' type='password'/>
                 </InputBox>
                 <InputBox>
-                    <Input text='re-enter password ' type='password'/>
+                    <input name='password2' placeholder='re-enter password ' type='password'/>
                 </InputBox>
-                <Button content='register'/>
+                <Button type='submit' content='register'/>
                 </>
                 }
             </form>

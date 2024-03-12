@@ -6,7 +6,7 @@ function ShoesByTagContainer ({shoes,tag}){
     let shoe;
     const [shoesByTag,setShoesByTag]=useState('');
     useEffect(()=>{
-        shoes.results?.map((ShoesByTagContainer)=>{
+        shoes?.results?.map((ShoesByTagContainer)=>{
             return(
                 ShoesByTagContainer.name===tag&&
                     axios.get(`${ShoesByTagContainer.url}`)
@@ -22,6 +22,7 @@ function ShoesByTagContainer ({shoes,tag}){
             return(
                 <CardInfo 
                     key={shoe.pk}
+                    url={shoe.url}
                     image={shoe.image}
                     name={shoe.name}
                     category_slug={shoe.category_slug}

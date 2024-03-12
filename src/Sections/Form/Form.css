@@ -29,6 +29,7 @@
 }
 
 .FormContainer .inputBox{
+
     position: relative;
     width: 100%;
     height: 50px;
@@ -37,10 +38,10 @@
     margin:30px 0;
     transition: 1s;
 }
-.FormContainer .inputBox input{
+.FormContainer .inputBox input {
     width: 100%;
     height: 100%;
-    background-color: transparent;
+    background-color: transparent !important;
     border: none;
     outline: none;
     padding: 10px;
@@ -99,6 +100,17 @@
 .FormContainer .inputBox input:focus{
     cursor: pointer;
 }
+.FormContainer .inputBox input:-webkit-autofill,
+.FormContainer .inputBox input:-webkit-autofill:hover, 
+.FormContainer .inputBox input:-webkit-autofill:focus {
+    border: none;
+    outline: none;
+    padding: 10px;
+    -webkit-text-fill-color: var(--color-light);
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: 'Playfair Display' !important;
+    font-variant: normal;
+  }
 @media screen and (max-width:400px){
     .FormContainer{
         width: 100%;

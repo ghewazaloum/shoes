@@ -1,25 +1,24 @@
 import './CardInfo.css';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { SelectedShoeContext } from '../../App';
+import ShoesContext from '../../Context/ShoesContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function CardInfo ({pk,image,name,category_slug}){
+function CardInfo ({url,image,name,category_slug}){
   const navigate =useNavigate();
-  const {setSelectedShoe}=useContext(SelectedShoeContext);
-  const NavigateToShoeDetail=(pk)=>{
-    setSelectedShoe(pk);
+  const {setSelectedShoe}=useContext(ShoesContext);
+  
+  const NavigateToShoeDetail=(url)=>{
+    setSelectedShoe(url);
     navigate("/ShoeDetails")
   }
     return(
-        <div className='card' onClick={()=>{NavigateToShoeDetail(pk)}}>
+        <div className='card' onClick={()=>{NavigateToShoeDetail(url)}}>
           <div className='imagebox'>
-            <img src={image}/>
+            <img src={image} alt=' '/>
           </div>
           <div className='cardContent'>
             <h5>{name}</h5>
-            <h6>{category_slug}</h6>
+            {/* <h6>{category_slug}</h6> */}
           </div>
         </div>
     );

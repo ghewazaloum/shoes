@@ -1,0 +1,27 @@
+.Container{
+    width: 80%;
+    display: flex;
+    justify-content:stretch;
+    align-items: flex-start;
+    overflow:hidden;
+}
+.ColumnContainer{
+    width: 80%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow:hidden;
+}
+@media screen and (max-width:1000px) {
+    .ColumnContainer{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width:650px) {
+    .Container{
+        flex-direction: column;
+        width: 100%;
+    }
+}
